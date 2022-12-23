@@ -1,4 +1,4 @@
-package view.managementUi;
+package view;
 
 public class ViewAllController {
 }
