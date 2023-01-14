@@ -2,6 +2,7 @@ package view;
 
 import database.DBConnection;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 import java.sql.Connection;
@@ -16,8 +17,17 @@ public class DeleteBooksController {
     public TextField publishedYear;
     public TextField numberOfCopies;
 
-    public void deleteBookOnAction(ActionEvent actionEvent) {
-
+    public void deleteBookOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        String sql="DELETE FROM books WHERE id=?";
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement statement=connection.prepareStatement(sql);
+        statement.setString(1 , bookId.getText());
+        boolean execute = statement.execute();
+        if(execute==true){
+            new Alert(Alert.AlertType.CONFIRMATION , "Successfully Deleted!").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR , "Something Went Wrong!").show();
+        }
     }
 
     public void loadDataOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
