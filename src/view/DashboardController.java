@@ -9,6 +9,10 @@ import java.io.IOException;
 public class DashboardController {
     public AnchorPane operationAnchorPane;
 
+    public void initialize() throws IOException {
+        operationAnchorPane.getChildren().add(FXMLLoader.load(getClass().getResource("addBooks.fxml")));
+    }
+
     public void addBooksOnAction(ActionEvent actionEvent) throws IOException {
         operationAnchorPane.getChildren().add(FXMLLoader.load(getClass().getResource("addBooks.fxml")));
     }
